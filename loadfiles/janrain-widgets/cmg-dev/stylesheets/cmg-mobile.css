@@ -1,0 +1,778 @@
+#janrainModal .janrain_modal_closebutton {
+  top: 10px;
+  right: 10px;
+  color: #888;
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  font-size: 12px;
+  font-family: helvetica, sans-serif;
+  font-weight: 100;
+  text-decoration: none;
+}
+
+#janrainModal .janrain-capture-ui.capture-ui-content {
+  background-color: white;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.capture_current_screen {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  -moz-transition: all 5s linear 0s;
+  -webkit-transition: all 5s linear 0s;
+  -o-transition: all 5s linear 0s;
+  transition: all 5s linear 0s;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h1 {
+  font-size: 18px;
+  line-height: inherit;
+  color: #333333;
+  font-weight: bold;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h2 {
+  font-size: 15px;
+  font-weight: bold;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h3 {
+  font-size: 15px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h4 {
+  font-size: 1.385em;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h5 {
+  font-size: 1.077em;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content .capture_signin {
+  margin: 0 auto;
+}
+
+.janrain-capture-ui {
+  /*/ Text/Element Styles /*/
+  font-size: 13px;
+  font-family: helvetica, sans-serif;
+  line-height: inherit;
+  color: #666666;
+  background-color: transparent;
+  /*/ Form Styles /*/
+}
+.janrain-capture-ui a,
+.janrain-capture-ui a:visited,
+.janrain-capture-ui a:link {
+  color: #009ddc;
+}
+.janrain-capture-ui a:hover {
+  color: #006690;
+}
+.janrain-capture-ui .capture_backgroundColor {
+  background-color: #f6f6f6;
+  color: #666666;
+}
+.janrain-capture-ui .capture_backgroundColor .capture_text_input, .janrain-capture-ui .capture_backgroundColor .capture_checkbox,
+.janrain-capture-ui .capture_backgroundColor .capture_radio, .janrain-capture-ui .capture_backgroundColor .capture_inputPlaceholder,
+.janrain-capture-ui .capture_backgroundColor .capture_select,
+.janrain-capture-ui .capture_backgroundColor .capture_textarea,
+.janrain-capture-ui .capture_backgroundColor .capture_checkbox,
+.janrain-capture-ui .capture_backgroundColor .capture_radio {
+  background-color: white;
+}
+.janrain-capture-ui .capture_backgroundColor .capture_text_input:focus, .janrain-capture-ui .capture_backgroundColor .capture_checkbox:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_radio:focus, .janrain-capture-ui .capture_backgroundColor .capture_inputPlaceholder:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_select:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_textarea:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_checkbox:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_radio:focus {
+  background-color: white;
+}
+.janrain-capture-ui .capture_backgroundColor .capture_provider li {
+  background-color: white;
+}
+.janrain-capture-ui .capture_backgroundColor .capture_form_item .capture_display_toggle_wrap .capture_display_toggle:hover {
+  background-color: white;
+}
+.janrain-capture-ui .capture_footer {
+  position: static;
+  height: 35px;
+  width: 100%;
+  text-align: right;
+  z-index: 5;
+  padding: 10px 0;
+  *zoom: 1;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -khtml-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+.janrain-capture-ui .capture_footer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.janrain-capture-ui .capture_footer .capture_btn {
+  margin: 0;
+}
+.janrain-capture-ui .capture_text_input, .janrain-capture-ui .capture_inputPlaceholder, .janrain-capture-ui .capture_select, .janrain-capture-ui .capture_textarea {
+  font-size: 14px;
+  font-family: helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color: #b3b3b3;
+  padding: 6px 5px;
+  margin: 2px 0px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  background-color: #f6f6f6;
+}
+.janrain-capture-ui .capture_text_input:focus, .janrain-capture-ui .capture_checkbox:focus,
+.janrain-capture-ui .capture_radio:focus, .janrain-capture-ui .capture_inputPlaceholder:focus, .janrain-capture-ui .capture_select:focus, .janrain-capture-ui .capture_textarea:focus {
+  color: #333333;
+  background-color: #e2e2e2;
+  -moz-box-shadow: 0 0 3px #009ddc, 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0 3px #009ddc, 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  -o-box-shadow: 0 0 3px #009ddc, 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 3px #009ddc, 0 0 3px rgba(0, 0, 0, 0.2) inset;
+  border: 1px solid #009ddc;
+}
+.janrain-capture-ui .capture_text_input, .janrain-capture-ui .capture_checkbox,
+.janrain-capture-ui .capture_radio, .janrain-capture-ui .capture_inputPlaceholder,
+.janrain-capture-ui .capture_textarea,
+.janrain-capture-ui .capture_inputPlaceholder {
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333333;
+}
+.janrain-capture-ui .capture_text_input::-webkit-input-placeholder, .janrain-capture-ui .capture_checkbox::-webkit-input-placeholder,
+.janrain-capture-ui .capture_radio::-webkit-input-placeholder, .janrain-capture-ui .capture_inputPlaceholder::-webkit-input-placeholder,
+.janrain-capture-ui .capture_textarea::-webkit-input-placeholder,
+.janrain-capture-ui .capture_inputPlaceholder::-webkit-input-placeholder {
+  color: #b3b3b3;
+}
+.janrain-capture-ui .capture_text_input:-moz-placeholder, .janrain-capture-ui .capture_checkbox:-moz-placeholder,
+.janrain-capture-ui .capture_radio:-moz-placeholder, .janrain-capture-ui .capture_inputPlaceholder:-moz-placeholder,
+.janrain-capture-ui .capture_textarea:-moz-placeholder,
+.janrain-capture-ui .capture_inputPlaceholder:-moz-placeholder {
+  color: #b3b3b3;
+}
+.janrain-capture-ui .capture_text_input:-ms-input-placeholder, .janrain-capture-ui .capture_checkbox:-ms-input-placeholder,
+.janrain-capture-ui .capture_radio:-ms-input-placeholder, .janrain-capture-ui .capture_inputPlaceholder:-ms-input-placeholder,
+.janrain-capture-ui .capture_textarea:-ms-input-placeholder,
+.janrain-capture-ui .capture_inputPlaceholder:-ms-input-placeholder {
+  color: #b3b3b3;
+}
+.janrain-capture-ui .capture_select {
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333333;
+}
+.janrain-capture-ui .capture_select.capture_disabled {
+  color: #b3b3b3;
+}
+.janrain-capture-ui .capture_select.capture_disabled:focus {
+  color: #333333;
+}
+.janrain-capture-ui .capture_checkbox,
+.janrain-capture-ui .capture_radio {
+  border: 0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.janrain-capture-ui .capture_checkbox label,
+.janrain-capture-ui .capture_radio label {
+  font-size: 13px;
+}
+.janrain-capture-ui .capture_inputPlaceholder {
+  border: 0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.janrain-capture-ui .capture_btn,
+.janrain-capture-ui a.capture_btn,
+.janrain-capture-ui .capture_btn:focus,
+.janrain-capture-ui a.capture_btn:focus,
+.janrain-capture-ui button.capture_btn:focus,
+.janrain-capture-ui input.capture_btn:focus,
+.janrain-capture-ui .capture_backButton:focus,
+.janrain-capture-ui button.capture_btn,
+.janrain-capture-ui input.capture_btn,
+.janrain-capture-ui .capture_backButton {
+  -moz-box-shadow: 0 1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  -o-box-shadow: 0 1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  font-family: helvetica, sans-serif;
+}
+.janrain-capture-ui .capture_btn:active,
+.janrain-capture-ui a.capture_btn:active,
+.janrain-capture-ui .capture_btn:active:focus,
+.janrain-capture-ui a.capture_btn:active:focus,
+.janrain-capture-ui button.capture_btn:active:focus,
+.janrain-capture-ui input.capture_btn:active:focus,
+.janrain-capture-ui .capture_backButton:active:focus,
+.janrain-capture-ui button.capture_btn:active,
+.janrain-capture-ui input.capture_btn:active,
+.janrain-capture-ui .capture_backButton:active {
+  -moz-box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1) inset, 0 -1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1) inset, 0 -1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  -o-box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1) inset, 0 -1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1) inset, 0 -1px 0px 0px rgba(255, 255, 255, 0.35) inset, 0 -26px 13px -13px rgba(0, 0, 0, 0.2) inset;
+}
+.janrain-capture-ui .capture_primary, .janrain-capture-ui a.capture_primary, .janrain-capture-ui button.capture_primary, .janrain-capture-ui input.capture_primary {
+  background-color: #009ddc;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #34c5ff), color-stop(100%, #0092cd));
+  background: -webkit-linear-gradient(top, #34c5ff, #0092cd);
+  background: -moz-linear-gradient(top, #34c5ff, #0092cd);
+  background: -o-linear-gradient(top, #34c5ff, #0092cd);
+  background: -ms-linear-gradient(top, #34c5ff, #0092cd);
+  background: linear-gradient(top, #34c5ff, #0092cd);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+  color: white;
+}
+.janrain-capture-ui a.capture_primary:visited,
+.janrain-capture-ui a.capture_primary:link,
+.janrain-capture-ui a.capture_primary:hover {
+  color: white;
+}
+.janrain-capture-ui .capture_secondary, .janrain-capture-ui a.capture_secondary, .janrain-capture-ui button.capture_secondary, .janrain-capture-ui input.capture_secondary {
+  background-color: #f6f6f6;
+  background-image: none;
+  color: #333333;
+  text-decoration: none;
+  text-shadow: none;
+}
+.janrain-capture-ui a.capture_secondary:visited,
+.janrain-capture-ui a.capture_secondary:link,
+.janrain-capture-ui a.capture_secondary:hover {
+  color: #333333;
+}
+.janrain-capture-ui .capture_processing {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  background-color: none;
+}
+.janrain-capture-ui .capture_fatal_error {
+  font-size: 12px;
+  background-color: #ffefde;
+  background-position: 10px 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px 5px 5px 35px;
+  border: 1px solid #dc7302;
+  color: #f58002;
+}
+.janrain-capture-ui .capture_form_error {
+  color: #f58002;
+  background-image: none;
+}
+.janrain-capture-ui .capture_form_item {
+  min-height: 0;
+}
+.janrain-capture-ui .capture_form_item .capture_tip {
+  color: #aaaaaa;
+}
+.janrain-capture-ui .capture_form_item.capture_focused .capture_tip {
+  color: #333333;
+}
+.janrain-capture-ui .capture_form_item .capture_tip_validating {
+  color: #aaaaaa;
+}
+.janrain-capture-ui .capture_form_item .capture_tip_validated {
+  color: #aaaaaa;
+}
+.janrain-capture-ui .capture_form_item .capture_tip_error {
+  color: #f58002;
+}
+.janrain-capture-ui .capture_form_item .capture_btn {
+  margin: 0;
+}
+.janrain-capture-ui .capture_save_success {
+  color: #64AE29;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+.janrain-capture-ui .capture_save_success {
+  *display: inline;
+}
+.janrain-capture-ui .capture_error .capture_radio,
+.janrain-capture-ui .capture_error .capture_checkbox,
+.janrain-capture-ui .capture_error .capture_text_input,
+.janrain-capture-ui .capture_error .capture_checkbox,
+.janrain-capture-ui .capture_error .capture_radio,
+.janrain-capture-ui .capture_error .capture_inputPlaceholder {
+  border: 1px solid #f58002;
+  -moz-box-shadow: 0 0 3px rgba(245, 148, 2, 0.3) inset;
+  -webkit-box-shadow: 0 0 3px rgba(245, 148, 2, 0.3) inset;
+  -o-box-shadow: 0 0 3px rgba(245, 148, 2, 0.3) inset;
+  box-shadow: 0 0 3px rgba(245, 148, 2, 0.3) inset;
+}
+.janrain-capture-ui .capture_validating .capture_text_input, .janrain-capture-ui .capture_validating .capture_checkbox,
+.janrain-capture-ui .capture_validating .capture_radio, .janrain-capture-ui .capture_validating .capture_inputPlaceholder,
+.janrain-capture-ui .capture_error .capture_text_input,
+.janrain-capture-ui .capture_error .capture_checkbox,
+.janrain-capture-ui .capture_error .capture_radio,
+.janrain-capture-ui .capture_error .capture_inputPlaceholder,
+.janrain-capture-ui .capture_validated .capture_text_input,
+.janrain-capture-ui .capture_validated .capture_checkbox,
+.janrain-capture-ui .capture_validated .capture_radio,
+.janrain-capture-ui .capture_validated .capture_inputPlaceholder {
+  padding: 6px 27px 6px 5px;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.janrain-capture-ui .capture_display_toggle_wrap {
+  font-size: 12px;
+  line-height: 16px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  left: 300px;
+  top: 20px;
+}
+.janrain-capture-ui .capture_display_toggle_wrap:hover {
+  background-color: #f6f6f6;
+}
+.janrain-capture-ui .janrain_traditional_account_only {
+  display: none;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#editProfile {
+  width: auto;
+}
+.janrain-capture-ui#editProfile .capture_form_item label {
+  text-indent: inherit;
+  overflow: visible;
+  height: auto;
+  *text-indent: 0;
+  *text-transform: capitalize;
+}
+.janrain-capture-ui .capture_nameBlock .capture_form_item,
+.janrain-capture-ui .capture_addressBlock .capture_form_item {
+  margin-bottom: 0;
+  min-height: 0;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_city_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_stateprovince_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_zippostalcode_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_city_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_stateprovince_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_zippostalcode_ {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin-right: 0;
+  margin-left: 1%;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_city_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_stateprovince_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_zippostalcode_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_city_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_stateprovince_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_zippostalcode_ {
+  *display: inline;
+}
+.janrain-capture-ui .capture_addressBlock .capture_form_item_workAddressDrop_city_, .janrain-capture-ui .capture_addressBlock .capture_form_item_addressDrop_city_, .janrain-capture-ui .capture_addressBlock .capture_form_item_editProfile_addressDrop_city_, .janrain-capture-ui .capture_addressBlock .capture_form_item_editProfile_workAddressDrop_city_, .janrain-capture-ui .capture_addressBlock .capture_addressFull_city,
+.janrain-capture-ui .capture_addressBlock .capture_form_item_addressDrop_stateprovince_, .janrain-capture-ui .capture_addressBlock .capture_form_item_workAddressDrop_stateprovince_, .janrain-capture-ui .capture_addressBlock .capture_form_item_editProfile_addressDrop_stateprovince_, .janrain-capture-ui .capture_addressBlock .capture_addressFull_stateprovince,
+.janrain-capture-ui .capture_addressBlock .capture_form_item_addressDrop_zippostalcode_, .janrain-capture-ui .capture_addressBlock .capture_form_item_workAddressDrop_zippostalcode_, .janrain-capture-ui .capture_addressBlock .capture_form_item_editProfile_addressDrop_zippostalcode_, .janrain-capture-ui .capture_addressBlock .capture_addressFull_zippostalcode {
+  width: 100%;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_tip_validating,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_tip_error,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_tip_validated {
+  position: absolute;
+  left: 100%;
+  top: 10px;
+}
+
+.janrain-capture-ui .capture_addressBlock .capture_form_item_addressDrop_city_ .capture_tip_error {
+  left: 290px;
+  background-color: white;
+  z-index: 999;
+}
+
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_city_ {
+  width: 40%;
+  margin-left: 0;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_stateprovince_ {
+  width: 18%;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_zippostalcode_ {
+  width: 40%;
+}
+.janrain-capture-ui .capture_dateselect_day,
+.janrain-capture-ui .capture_dateselect_month,
+.janrain-capture-ui .capture_dateselect_year {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin-left: 1%;
+}
+.janrain-capture-ui .capture_dateselect_day,
+.janrain-capture-ui .capture_dateselect_month,
+.janrain-capture-ui .capture_dateselect_year {
+  *display: inline;
+}
+.janrain-capture-ui .capture_dateselect_month {
+  width: 40%;
+  margin-left: 0;
+}
+.janrain-capture-ui .capture_dateselect_day {
+  width: 18%;
+}
+.janrain-capture-ui .capture_dateselect_year {
+  width: 40%;
+}
+.janrain-capture-ui .capture_tabs li a {
+  font-size: 12px;
+  background-color: #dddddd;
+  -moz-box-shadow: 0 -10px 5px -8px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 -10px 5px -8px rgba(0, 0, 0, 0.1) inset;
+  -o-box-shadow: 0 -10px 5px -8px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 -10px 5px -8px rgba(0, 0, 0, 0.1) inset;
+  font-size: 14px;
+  display: block;
+}
+.janrain-capture-ui .capture_tabs li a:visited, .janrain-capture-ui .capture_tabs li a:link, .janrain-capture-ui .capture_tabs li a:hover {
+  color: #999999;
+}
+.janrain-capture-ui .capture_tabs li.capture_toggled a {
+  background-color: #f6f6f6;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.janrain-capture-ui .capture_tabs li.capture_toggled a:visited, .janrain-capture-ui .capture_tabs li.capture_toggled a:link, .janrain-capture-ui .capture_tabs li.capture_toggled a:hover {
+  color: #666666;
+}
+.janrain-capture-ui .capture_data_item {
+  margin-bottom: 15px;
+  *zoom: 1;
+  clear: both;
+}
+.janrain-capture-ui .capture_data_item:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.janrain-capture-ui .capture_data_item label {
+  width: 39%;
+  margin-right: 1%;
+  text-align: right;
+  float: left;
+}
+.janrain-capture-ui .capture_data_item .capture_data {
+  width: 60%;
+  float: left;
+}
+.janrain-capture-ui .capture_provider li {
+  background-color: #f6f6f6;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+.janrain-capture-ui .capture_provider li .capture_remove {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+html, body {
+  height: 100% !important;
+}
+
+#janrainModal {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#janrainModal .janrain_modal_closebutton {
+  top: 15px;
+}
+
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile {
+  padding: 10px 10px 10px 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#signIn {
+  padding: 10px 0 0 0;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#signIn h1 {
+  margin: 0 0 0 10px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#returnSocial, #janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#returnTraditional {
+  padding: 10px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile .capture_signin {
+  width: 300px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#mergeAccounts {
+  width: 100%;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile.capture_noFooter {
+  padding: 10px;
+}
+
+.janrain-capture-ui.janrain-capture-ui-mobile {
+  padding: 10px;
+  width: 100%;
+  min-height: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile h1 {
+  font-size: 16px;
+  line-height: inherit;
+  color: #333333;
+  font-weight: bold;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile h2 {
+  font-size: 14px;
+  font-weight: bold;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile h1, .janrain-capture-ui.janrain-capture-ui-mobile h2, .janrain-capture-ui.janrain-capture-ui-mobile h3, .janrain-capture-ui.janrain-capture-ui-mobile h4, .janrain-capture-ui.janrain-capture-ui-mobile h5, .janrain-capture-ui.janrain-capture-ui-mobile h6 {
+  padding: 0;
+  margin: 0;
+  color: #666666;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_header {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_header h1 {
+  margin: 0;
+  padding: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile.capture_noFooter {
+  padding: 10px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_access,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_retrieving {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  width: 140px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#editPersonalInfo .capture_form_item label, .janrain-capture-ui.janrain-capture-ui-mobile#editPassword .capture_form_item label, .janrain-capture-ui.janrain-capture-ui-mobile#editContactInfo .capture_form_item label, .janrain-capture-ui.janrain-capture-ui-mobile#editAccountInfo .capture_form_item label {
+  text-indent: inherit;
+  overflow: visible;
+  height: auto;
+  *text-indent: 0;
+  *text-transform: capitalize;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_backgroundColor {
+  height: 50%;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#mergeAccounts .capture_dashed {
+  padding: 10px;
+  margin: 15px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_mergeCol {
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 10px 0 0 0;
+  position: relative;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_mergeCol .capture_popup_container .capture_popup-arrow {
+  left: 100px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_form_item_createAccountButton .label {
+  float: none;
+  width: auto;
+  padding: 10px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_form_item_createAccountButton input {
+  float: none;
+  margin: 10px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_tabs li.capture_tab_li_signInOption.capture_toggled a,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_tabs li.capture_tab_li_createAccountOption.capture_toggled a {
+  background-image: none;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_signInOption,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_createAccountOption {
+  margin-top: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_signInOption .capture_form_item,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_createAccountOption .capture_form_item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 0;
+  min-height: 48px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_signInOption .capture_form_item.capture_textRight,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_createAccountOption .capture_form_item.capture_textRight {
+  min-height: 0;
+  text-align: right;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_signInOption .capture_form_item.capture_form_item_traditionalSignIn_staySignedIn,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_createAccountOption .capture_form_item.capture_form_item_traditionalSignIn_staySignedIn {
+  min-height: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap {
+  top: 5px;
+  left: auto;
+  right: 5px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap .capture_display_toggle_options {
+  left: -25px;
+  top: 20px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile ul.options {
+  display: none;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager {
+  border: none;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin: 10px;
+  width: 65px;
+  height: 65px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager {
+  *display: inline;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic_display,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic {
+  width: 65px;
+  height: 65px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic_display img,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic img {
+  height: 65px;
+  width: 65px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture-public-displayName,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager_parent {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture-public-displayName,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager_parent {
+  *display: inline;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile .capture-public-displayName h1 {
+  color: white;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile #profile_pic {
+  widht: 65px;
+  height: 65px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile .capture_personal_info h2 {
+  float: none;
+  font-size: 15px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile .capture_provider {
+  margin-top: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoDisplay #profile_pic,
+.janrain-capture-ui.janrain-capture-ui-mobile #capture_photoManager #profile_pic {
+  margin: 0 10px 0 0;
+  border: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoDisplay .capture-public-displayName,
+.janrain-capture-ui.janrain-capture-ui-mobile #capture_photoManager .capture-public-displayName {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoDisplay .capture-public-displayName,
+.janrain-capture-ui.janrain-capture-ui-mobile #capture_photoManager .capture-public-displayName {
+  *display: inline;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture-profile-photo h3 {
+  display: none;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_profile_section {
+  padding: 20px;
+}
+
+.janrain-capture-ui-mobile .user-photo {
+  background-color: #f6f6f6;
+}

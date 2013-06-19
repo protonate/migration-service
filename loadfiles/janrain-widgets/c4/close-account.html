@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="//www.channel4.com/static/globalnav/css/globalnav.css" type="text/css">
+      <link href="https://www.channel4.com/static/global/css/4od/reset.css" type="text/css" rel="stylesheet">
+      <link href="https://www.channel4.com/static/global/css/4od/elements.css" type="text/css" rel="stylesheet">
+      <link href="https://www.channel4.com/static/global/css/4od/structure.css" type="text/css" rel="stylesheet">
+      <link href="https://www.channel4.com/static/global/css/4od/modules.css" type="text/css" rel="stylesheet">
+      <link href="https://www.channel4.com/static/identity/css/identity.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript">
+            (function() {
+                if (typeof window.janrain !== 'object') window.janrain = {};
+                window.janrain.settings = {};
+                window.janrain.settings.capture = {};
+
+                janrain.settings.appUrl = 'https://channel4-test.rpxnow.com';
+
+                // you need to define these next two settings yourself
+                // these are for my dev system
+                
+                janrain.settings.custom = true;
+                janrain.settings.capture.appId = 'qfm5yezrh9388mj3d5kbcw7egh';
+                janrain.settings.capture.federate = true;
+                janrain.settings.capture.federateServer = 'https://channel4-test.janrainsso.com';
+                janrain.settings.capture.federateXdReceiver = 'http://d16s8pqtk4uodx.cloudfront.net/c4/xdcomm.html';
+                janrain.settings.capture.federateLogoutUri = 'http://d16s8pqtk4uodx.cloudfront.net/c4/logout.html';
+                janrain.settings.capture.redirectUri = 'http://channel4.com/';
+                janrain.settings.capture.clientId = 'msd3jt9k48mat2qe429yrr6tnjew76a7';
+                janrain.settings.capture.recaptchaPublicKey = '6LeVKb4SAAAAAGv-hg5i6gtiOV4XrLuCDsJOnYoP';
+                janrain.settings.capture.responseType = 'token';
+                janrain.settings.capture.captureServer = 'https://channel4-test.dev.janraincapture.com';
+                janrain.settings.capture.registerFlow = 'socialRegistration';
+                janrain.settings.capture.screenToRender = 'closeAccount';
+                janrain.settings.capture.flowVersion = 'HEAD';
+                janrain.settings.capture.flowName = 'editProfile';
+                janrain.settings.capture.stylesheets = ['stylesheets/channel4.css'];
+
+                janrain.settings.capture.confirmModalClose = true;
+                janrain.settings.type = 'embed';
+                janrain.settings.tokenUrl = 'http://channel4.com/';
+                janrain.settings.tokenAction = 'event';
+                janrain.settings.format = 'one column';
+                janrain.settings.providers = ['facebook', 'twitter','google'];
+                janrain.settings.providersPerPage = 3;
+                janrain.settings.width = '220';
+                janrain.settings.showAttribution = false;
+                janrain.settings.actionText = ' ';
+				janrain.settings.borderRadius = 0;
+                janrain.settings.borderColor = '#ffffff';
+                janrain.settings.backgroundColor = '#ffffff';
+                janrain.settings.language = 'en';
+
+                janrain.settings.packages = ['login', 'capture'];
+
+                function isReady() { janrain.ready = true; };
+                if (document.addEventListener) {
+                    document.addEventListener("DOMContentLoaded", isReady, false);
+                } else {
+                    window.attachEvent('onload', isReady);
+                }
+
+                var e = document.createElement('script');
+                e.type = 'text/javascript';
+                e.id = 'janrainAuthWidget'
+
+                var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+                url += 'd16s8pqtk4uodx.cloudfront.net';
+                url += '/c4/load.js';
+                e.src = url;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(e, s);
+            })();
+
+            function janrainWidgetOnload() {
+
+            }
+            function janrainCaptureWidgetOnLoad() {
+            janrain.capture.ui.start();
+                janrain.events.onCaptureCustomEvent.addHandler(function(result){
+                    if (result.name && result.name === 'onCloseAccount') {
+                        function logoutCallback() {
+                            window.location = 'index.html';
+                        }
+                        if (janrain.settings.capture.federate) janrain.settings.capture.federateLogoutCallback = logoutCallback;
+                        janrain.capture.ui.endCaptureSession();
+                        if (!janrain.settings.capture.federate) logoutCallback();
+                    }
+                });
+                janrain.events.onCaptureStartLogin.addHandler(function(result){
+                    console.log('loginStart', result)
+                });
+                janrain.events.onCaptureStartRegistration.addHandler(function(result){
+                    console.log('registrationStart', result)
+                });
+
+                janrain.events.onCaptureSuccessfulLogin.addHandler(function(result){
+                    janrain.capture.ui.modal.close();
+                    alert('huzzah, you just logged in and got an accessToken of ' + result.accessToken);
+                    var linkA = document.createElement('a');
+                    linkA.href = 'edit-profile.html';
+                    linkA.innerHTML = 'edit profile';
+                    document.body.appendChild(linkA);
+                });
+                janrain.events.onCaptureSuccessfulRegistration.addHandler(function(result){
+                    janrain.capture.ui.modal.close();
+                    alert('huzzah, you just logged in and got an accessToken of ' + result.accessToken);
+                });
+                janrain.events.onCaptureValidationFailed.addHandler(function(result){
+                        //if (window.console && window.console.log) console.log('validation fail', result)
+                });
+                janrain.events.onCaptureValidationSuccess.addHandler(function(result){
+                        //if (window.console && window.console.log) console.log('validation success', result)
+                });
+                janrain.capture.ui.registerFunction('myCustomValidator', function(name, value, validation) {
+                    if (value === 'test') {
+                        validation.valid();
+                    } else {
+                        validation.notValid('You really messed up.');
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="login identity hasBackground confirm" style="background-image:url(https://www.channel4.com/static/identity/css/img/login-bg/father_ted.jpg);">
+        <div class="main-wrapper cf">
+            <div class="content-wrapper cf">
+                <div class="main-content">
+                    <h1 class="header-banner close-ac"><span class="accessibility">Close my account</span></h1>
+                    <h2 class="header-strap">Was it something we said?</h2>
+                    <div class="logo-bar">
+                  			<span class="channel channel-sm tx-C4tilt"><span class="accessibility">Channel 4</span></span>
+                  			<span class="channel channel-sm tx-E4"><span class="accessibility">E4</span></span>
+                  			<span class="channel channel-sm tx-4M"><span class="accessibility">4Music</span></span>
+                  			<span class="channel channel-sm tx-M4"><span class="accessibility">More4</span></span>
+                  			<span class="channel channel-sm tx-4O"><span class="accessibility">4OD</span></span>
+                  			<span class="channel channel-sm tx-F4"><span class="accessibility">Film4</span></span>
+                		</div>
+                    <h3>Are you sure you have to go? Being registered with Channel 4 means you can:</h3>
+                		<ul class="reg-module benefits">
+                  		  <li>Get free access to our entire catalogue of 4oD programmes</li>
+                        <li>Watch premieres of brand new shows on 4oD - before they get on TV</li>
+                  		  <li>Use My 4oD to keep track of shows you have watched or started to watch</li>
+                  		  <li>Create a unique playlist of shows you want to watch with My 4oD</li>
+                  		  <li>Watch exclusive shows that are only available online</li>
+                		</ul>
+                		<p>Perhaps there is an issue we can help with? If so, please use the Contact us button below.</p>
+                    <div style="display: none" id="closeAccount">
+                        {* deleteAccountForm *}
+                                {* closeAccountButton *}
+                        <a href="#" class="btn med"><span>Contact Us</span></a>
+                        <a href="#">Cancel</a>
+                        {* /deleteAccountForm *}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

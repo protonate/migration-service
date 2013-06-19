@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link href="http://cdn.quilt.janrain.com/2.0.15/quilt.css" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+    (function() {
+        if (typeof window.janrain !== 'object') window.janrain = {};
+        window.janrain.settings = {};
+            window.janrain.settings.capture = {};
+
+        /* _______________ can edit below this line _______________ */
+
+            janrain.settings.appUrl = 'https://cmg-dev.rpxnow.com';
+            janrain.settings.capture.appId= 'u8wz9dtmm99upmpu52bazczfq3';
+            janrain.settings.capture.clientId = '5cdyk76ckd8j6ux7pc4xyx8szpj28g5b';
+            janrain.settings.capture.redirectUri = 'http://www.coxmediagroup.com/',
+            janrain.settings.capture.responseType = 'token';
+            janrain.settings.capture.captureServer = 'https://cmg.dev.janraincapture.com';
+            janrain.settings.capture.stylesheets = ['stylesheets/cmg.css'];
+            janrain.settings.capture.screenToRender = 'editProfile';
+            janrain.settings.type = 'embed';
+            janrain.settings.tokenUrl = 'http://www.coxmediagroup.com/';
+            janrain.settings.tokenAction = 'event';
+            janrain.settings.format = 'two column';
+            janrain.settings.providers = ['facebook','google','twitter','yahoo','linkedin','aol'];
+            janrain.settings.providersPerPage = '6';
+            janrain.settings.actionText = ' ';
+            janrain.settings.width = 300;
+            janrain.settings.borderColor = '#ffffff';
+            janrain.settings.backgroundColor = '#ffffff';
+            janrain.settings.language = 'en';
+            janrain.settings.packages = ['login', 'capture'];
+
+            janrain.settings.capture.modalBorderOpacity = 1;
+            janrain.settings.capture.modalBorderWidth = 5;
+            janrain.settings.capture.modalBorderRadius = 5;
+            janrain.settings.capture.modalCloseHtml = '<span class="janrain-icon-16 janrain-icon-ex2"></span>';
+            janrain.settings.capture.modalBorderColor = '#7AB433';
+            janrain.settings.capture.noModalBorderInlineCss = true;
+
+            janrain.settings.capture.flowName = 'singleFlow';
+
+        /* _______________ can edit above this line _______________ */
+
+        function isReady() { janrain.ready = true; };
+        if (document.addEventListener) {
+          document.addEventListener("DOMContentLoaded", isReady, false);
+        } else {
+          window.attachEvent('onload', isReady);
+        }
+
+            var e = document.createElement('script');
+            e.type = 'text/javascript';
+            e.id = 'janrainAuthWidget'
+
+            var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+            url += 'd16s8pqtk4uodx.cloudfront.net';
+            url += '/cmg-dev/load.js';
+            e.src = url;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(e, s);
+        })();
+
+        function janrainCaptureWidgetOnLoad() {
+            janrain.capture.ui.start();
+            if (window.console && window.console.log) console.log('capture started')
+            janrain.events.onCaptureScreenShow.addHandler(function(result){
+                console.log('onCaptureScreenShow');
+            });
+            janrain.events.onCaptureAccountDeactivateSuccess.addHandler(function(){
+                janrain.capture.ui.endCaptureSession();
+                window.location = 'index.html';
+            });
+            janrain.events.onCaptureLoginSuccess.addHandler(function(){
+                janrain.capture.ui.renderScreen('editProfile');
+            });
+            janrain.events.onCaptureRenderStart.addHandler(function(flow){
+                console.log('onCaptureRenderStart');
+            });
+            janrain.events.onCaptureAccessDenied.addHandler(function(){
+                //window.location = 'index.html';
+            });
+            janrain.events.onCaptureSessionEnded.addHandler(function(result){
+                window.location = 'index.html';
+                console.log('onCaptureSessionEnded');
+            });
+            janrain.events.onCaptureLoginStart.addHandler(function(){
+                var accessDeniedMessage = document.getElementById('captureAccessDeniedBuiltIn');
+                if (accessDeniedMessage) accessDeniedMessage.style.display = 'none';
+            });
+
+        }
+    </script>
+</head>
+    <body class="janrain-font">
+        <div id="captureAccessDeniedBuiltIn" style="display: none">
+            <div class="capture_access">Sorry, you are not currently signed in.  <a href="#" data-capturescreen="signIn">Sign in</a> to access your profile.</div> 
+        </div>
+        <div id="global_nav">
+            <div class="wrapper">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html" class="capture_end_session">Sign Out</a></li>
+                  <li><a href="edit-profile.html" class="selected">Edit Profile</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div id="editProfile" style="display: none;">
+            <div class="contentBoxWhiteShadow capture_profile_section">
+                <div class="capture_confirmDelete">
+                    <p>Created on: {* display_created *}</p>
+                    <p>Last login: {* display_lastLogIn *}</p>
+                    <p>Sites you have logged into: {* sitesCommaSep *}</p>
+                    <!-- Only show this if it was from a traditional login !-->
+                    <div class="janrain_traditional_account_only">
+                       <p><a href="#" data-capturescreen="changePassword">Change My Password</a></p>
+                    </div>
+                </div>
+                {* photoManager *}
+                {* editProfileForm *}
+                    <div class="capture_displayNameCol">
+                        {* displayName *}
+                    </div>
+                    <div class="capture_editCol">
+                        <h3>My Basic Profile</h3>
+                        {* givenName *}
+                        {* familyName *}
+                        {* email *}  
+                        {* birthdate *} 
+                        {* gender *}
+                    </div>
+                    <div class="capture_hr"></div>
+                        <h3>My Phone Numbers</h3>
+                        {* #profilePhoneCollection *}
+                            {* #mobilePhoneTab *}
+                                <div class="capture_editCol">
+                                    {* mobilePhone *}
+                                </div>
+                            {* /mobilePhoneTab *}
+                            {* #homePhoneTab *}
+                                <div class="capture_editCol">
+                                {* phone *}
+                                </div>
+                            {* /homePhoneTab *}
+                            {* workPhoneTab *}
+                                <div class="capture_editCol">
+                                 {* workPhone *}
+                                </div>
+                            {* /workPhoneTab *}
+                            {* daytimePhoneTab *}
+                                <div class="capture_editCol">
+                                 {* daytimePhone *}
+                                </div>
+                            {* /daytimePhoneTab *}
+                        {* /profilePhoneCollection *}
+                           <div class="capture_hr"></div>  
+                           <h3>My Addresses</h3>
+                        {* #profileAddressCollection *}
+                            {* #homeAddressTab *}
+                                <div class="capture_editCol">
+                                    {* addressDrop *}
+                                </div>
+                            {* /homeAddressTab *}
+                            {* #workAddressTab *}
+                                <div class="capture_editCol">
+                                    {* workAddressDrop *}
+                                </div>
+                            {* /workAddressTab *}
+                           {* /profileAddressCollection *}
+                        <div class="capture_hr"></div>
+                        <h3>Linked Accounts</h3>
+                        <div class="capture_editCol">
+                            {* linkedAccounts *}
+                        </div>
+                            {* linkAccountContainer *}
+                                <div class="capture_header">
+                                    <h1>Link your accounts</h1>
+                                </div>
+                                <h2>Allows you to sign in to your account using that provider in the future.</h2>
+                                <div class="capture_signin">
+                                    {* loginWidget *}
+                                </div>
+                            {* /linkAccountContainer *}
+                        
+                        <div class="capture_form_item">
+                        {* submitButton *}
+                        {* savedProfileMessage *}
+                        </div>
+                    </div>
+                {* /editProfileForm *}
+            </div>
+        </div>
+    <div style="display:none;" id="changePasswordEditProfile">
+        <div class="capture_header">
+            <h1>Change password</h1>
+        </div>
+        {* newPasswordForm *}
+            {* currentPassword *}
+            {* newPassword *}
+            {* newPasswordConfirm *}
+            <div class="capture_footer">{* saveNewPasswordButton *}</div>
+        {* /newPasswordForm *}
+    </div>
+    <div style="display:none;" id="confirmDelete">
+        <div class="capture_header">
+            <h1>Confirm Account Deletion</h1>
+        </div>
+            <p>Are you sure you want to dele your account(s)? This will remove your access to the following sites:</p>
+            {* sites *}
+            <div class="capture_footer">
+                <div class="capture_left">
+                    <a href="#" onclick="janrain.capture.ui.modal.close()" class="capture_btn capture_secondary">No</a>
+                </div>
+                <div class="capture_right">
+                    {* confirmDeleteForm *}{* confirmDeleteButton *}{* /confirmDeleteForm *}
+                </div>
+            </div>
+    </div>
+    <div style="display:none;" id="newPasswordSuccess">
+        <div class="capture_header">
+            <h1>You did it!</h1>
+        </div>
+          <p>Your password has been successfully changed.</p>
+        <div class="capture_footer">
+            <a href="#" onclick="janrain.capture.ui.modal.close()" class="capture_btn capture_secondary">Close</a>
+        </div>
+    </div>
+    <div style="display:none;" id="addLinkedAccount">
+        <div class="capture_header">
+            <h1>Link another account</h1>
+        </div>
+        <h3>Link any of these providers with your account.<br />Allows you to sign in to your {* siteName *} account using that provider in the future.</h3>
+        {* loginWidget *}
+    </div>
+        <div style="display:none;" id="signIn">
+            <div class="capture_header">
+                <h1>Sign Up / Sign In</h1> 
+            </div>
+            <div class="capture_signin">
+                <h2>With your existing account from...</h2>
+                {* loginWidget *} <br />
+            </div>
+            <div class="capture_backgroundColor">
+                <div class="capture_signin">
+                    <h2>With a traditional account...</h2>
+ 
+                            {* #userInformationForm *}
+                                {* traditionalSignIn_emailAddress *}
+                                {* traditionalSignIn_password *}
+                                <div class="capture_form_item capture_rightText">
+                                    {* traditionalSignIn_signInButton *}
+                                </div>
+                            {* /userInformationForm *}
+                  
+				<a href="#" data-capturescreen="traditionalRegistration">Create a Cox Media Group Account</a>
+ 
+                </div>
+            </div>
+        </div>
+
+        <div style="display:none;" id="returnSocial">
+            <div class="capture_header">
+                <h1>Sign Up / Sign In</h1>
+            </div>
+            <div class="capture_signin">
+                <h2>Welcome Back {* welcomeName *}</h2>
+                {* loginWidget *} 
+                <div class="capture_centerText switchLink"><a href="#" data-cancelcapturereturnexperience="true">Use another account</a></div>
+            </div>
+        </div>
+        <div style="display:none;" id="returnTraditional">
+            <div class="capture_header">
+                <h1>Sign Up / Sign In</h1>
+            </div>
+            <h2 class="capture_centerText">Welcome back. Please sign in</h2>
+                    <div class="capture_backgroundColor">
+                        <div class="capture_signin">
+                        {* #userInformationForm *}
+                            {* traditionalSignIn_emailAddress *}
+                            {* traditionalSignIn_password *}
+                            <div class="capture_form_item capture_rightText">
+                                {* traditionalSignIn_signInButton *}
+                            </div>
+                        {* /userInformationForm *}
+                    </div>
+                <div class="capture_centerText switchLink"><a href="#" data-cancelcapturereturnexperience="true">Use another account</a></div>
+            </div>
+        </div>
+        <div style="display:none;" id="socialRegistration" class="capture_lrg_footer">
+            <div class="capture_header">
+                <h1>You're Almost Done!</h1>
+            </div>
+              <h2>Please confirm the information below before signing in.</h2>
+                {* #socialRegistrationForm *}
+                    {* registration_firstName *}
+                    {* registration_lastName *}
+                    {* socialRegistration_displayName *}
+                    {* socialRegistration_emailAddress *}
+                    {* registration_birthday *}
+                    {* registration_gender *}
+                    {* registration_postalZip *}
+                    <div class="capture_form_item">
+                        <label>*Indicates Required Field</label>
+                    </div>
+                    {* agreeToTerms *}
+                    <div class="capture_footer">
+                        <div class="capture_left">
+                            {* backButton *}
+                        </div>
+                        <div class="capture_right">
+                        {* socialRegistration_signInButton *}
+                        </div>
+                    </div>
+                {* /socialRegistrationForm *}
+        </div>
+        <div style="display:none;" id="traditionalRegistration">
+        		 
+            <div class="capture_header">
+                <h1>Create a New Account</h1>
+            </div>
+            <p>Already have an account? <a href="#" data-capturescreen="signIn">Sign In</a>
+                {* #registrationForm *}
+                    {* registration_firstName *}
+                    {* registration_lastName *}
+                    {* traditionalRegistration_displayName *}
+                    {* traditionalRegistration_emailAddress *}
+                    {* registration_birthday *}
+                    {* registration_gender *}
+                    {* registration_postalZip *}
+                    {* traditionalRegistration_password *}
+                    {* traditionalRegistration_passwordConfirm *}
+                    <div class="capture_form_item">
+                        <label>*Indicates Required Field</label>
+                    </div>
+                    {* agreeToTerms *}
+                    <div class="capture_footer">
+                        <div class="capture_left">
+                            {* backButton *}
+                        </div>
+                        <div class="capture_right">
+                        {* createAccountButton *}
+                        </div>
+                    </div>
+                {* /registrationForm *}
+        </div>
+        <div style="display:none;" id="traditionalRegistrationBlank">
+            <div class="capture_header">
+                <h1>Create a New Account</h1>
+            </div>
+            <p>Already have an account? <a href="#" data-capturescreen="signIn">Sign In</a>
+                {* #registrationFormBlank *}
+                    {* registration_firstName *}
+                    {* registration_lastName *}
+                    {* traditionalRegistration_displayName *}
+                    {* traditionalRegistration_emailAddressBlank *}
+                    {* registration_birthday *}
+                    {* registration_gender *}
+                    {* registration_postalZip *}
+                    {* traditionalRegistration_passwordBlank *}
+                    {* traditionalRegistration_passwordConfirmBlank *}
+                    <div class="capture_form_item">
+                        <label>*Indicates Required Field</label>
+                    </div>
+                    {* agreeToTerms *}
+                    <div class="capture_footer">
+                        <div class="capture_left">
+                            {* backButton *}
+                        </div>
+                        <div class="capture_right">
+                        {* createAccountButton *}
+                        </div>
+                    </div>
+                {* /registrationForm *}
+        </div>
+
+        <div style="display:none;" id="registrationSuccess">
+            <div class="capture_header">
+                <h1>Thank you for registering!</h1>
+            </div>
+                <p>We have sent a confirmation email to {* data_emailAddress *}. Please check your email and click on the link to activate your account.</p>
+        </div>
+
+        <div style="display:none;" id="registrationSuccessConfirmed">
+            <div class="capture_header">
+                <h1>Thank you for registering!</h1>
+            </div>
+                <p>We look forward to seeing you on [website] frequently. Visit us and sign in to update your profile, receive the latest news and keep up to date with mobile alerts.</p>
+                <p>
+                    Click <a href="#"  onclick="janrain.capture.ui.modal.close()">here</a> to return to the page you were visiting.
+                </p>
+        </div>
+
+        <div style="display:none;" id="forgotPassword">
+            <div class="capture_header">
+                <h1>Create a new password</h1>
+            </div>
+            <h2>Don't worry, it happens. We'll send you a link to create a new password.</h2>
+            {* #forgotPasswordForm *}
+                {* forgotPassword_emailAddress *}
+                <div class="capture_footer">
+                    <div class="capture_left">
+                        {* backButton *}
+                    </div>
+                    <div class="capture_right">
+                        {* forgotPassword_sendButton *}
+                    </div>
+                </div>
+            {* /forgotPasswordForm *}
+        </div>
+
+        <div style="display:none;" id="forgotPasswordSuccess">
+            <div class="capture_header">
+                <h1>Email sent</h1>
+            </div>
+            <p>We have sent you an email with a link to change your password.</p>
+        </div>
+
+        <div style="display:none;" id="forgotPasswordSuccess">
+            <div class="capture_header">
+                <h1>Create a new password</h1>
+            </div>
+              <p>We've sent an email with instructions to create a new password. Your existing password has not been changed.</p>
+            <div class="capture_footer">
+                <a href="#" onclick="janrain.capture.ui.modal.close()" class="capture_btn capture_secondary">Close</a>
+            </div>
+        </div>
+        
+        <div style="display:none;" id="mergeAccounts">
+            {* mergeAccounts *}
+        </div>
+        <div style="display:none;" id="traditionalAuthenticateMerge">
+            <div class="capture_header">
+                <h1>Sign in to complete account merge</h1>
+            </div>
+            <div class="capture_signin">
+            {* #tradAuthenticateMergeForm *}
+                {* traditionalSignIn_emailAddress *}
+                {* mergePassword *}
+                <div class="capture_footer">
+                    <div class="capture_left">
+                        {* backButton *}
+                    </div>
+                    <div class="capture_right">
+                        {* traditionalSignIn_signInButton *}
+                    </div>
+                </div>
+             {* /tradAuthenticateMergeForm *}
+            </div>
+        </div>
+
+
+
+<div id="janrainEngageEmbed"  style="display:none;"></div>
+</body>
+
+</html>

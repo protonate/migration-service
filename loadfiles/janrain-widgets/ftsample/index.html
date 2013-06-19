@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <link href="http://cdn.quilt.janrain.com/2.0.5/quilt.css" media="all" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+          .contentBoxWhiteShadow .btn_large {margin-top: 10px}
+          .contentBoxDarkBlueTexture {border-radius: 0; padding-top: 50px; padding-bottom: 50px;}
+          .contentBoxDarkBlueTexture h1 {padding-bottom: 25px;}
+          .janrain-icon-48 {margin-right: 5px;}
+          .inline h2 {padding-top: 0;}
+        </style>
+
+        <script type="text/javascript">
+
+            // set up the navigation
+            $(document).ready(function() {
+
+                // on sign out, tell the widget to destroy the session
+                $('#signOut').click(function() {
+
+                    if (confirm("Really sign out?")) {
+                        janrain.capture.ui.endCaptureSession();
+                        $("#loggedInNavigation").hide();
+                        $("#loggedOutNavigation").show();
+                    }
+
+                    return false;
+                });
+
+            });
+
+            // call our code/token exchanger, and use the token to set up a capture session
+            function getTokenForCode(code, redirect_uri) {
+
+                var url = "code-token-exchanger.php?auth_code=" + code + "&redirect_uri=" + redirect_uri;
+
+                $.getJSON(url, function(data) {
+
+                    console.log("data from call to code-token-exchanger.php:")
+                    console.log(data);
+
+                    janrain.capture.ui.createCaptureSession(data.access_token);
+
+                });
+            }
+
+
+            // simple logging wrapper
+            function niceLog(message) {
+                if (window.console && window.console.log) {
+                    console.log (message);
+                }
+                else {
+                    alert (message);
+                }
+            }
+
+
+            (function() {
+                if (typeof window.janrain !== 'object') window.janrain = {};
+                window.janrain.settings = {};
+                window.janrain.settings.capture = {};
+
+                janrain.settings.appUrl = 'https://ft-eval.rpxnow.com';
+                janrain.settings.capture.redirectUri = 'http://example.com/',
+                janrain.settings.capture.appId= '49aaft8enkyjq4spuuwz3qbce9';
+                janrain.settings.capture.clientId = 'wcjwbvttbmgyudy8m59cq2r3amjhrb6s';
+                janrain.settings.capture.responseType = 'token';
+                janrain.settings.capture.captureServer = 'https://ft.dev.janraincapture.com';
+                janrain.settings.capture.registerFlow = 'socialRegistration';
+                janrain.settings.capture.flowVersion = 'HEAD';
+                janrain.settings.capture.flowName = 'demoFlow';
+
+                janrain.settings.capture.recaptchaPublicKey = '6LeVKb4SAAAAAGv-hg5i6gtiOV4XrLuCDsJOnYoP';
+                janrain.settings.capture.setProfileData = 'true';
+                janrain.settings.capture.stylesheets = ["stylesheets/demo.css"];
+                janrain.settings.capture.confirmModalClose = 'true';
+                janrain.settings.type = 'embed';
+                janrain.settings.tokenUrl = 'http://financialtimes.com/';
+                janrain.settings.tokenAction = 'event';
+                janrain.settings.format = 'two column';
+                janrain.settings.providers = ['google', 'yahoo'];
+                janrain.settings.providersPerPage = '4';
+                janrain.settings.actionText = '';
+                janrain.settings.borderColor = '#ffffff';
+                janrain.settings.backgroundColor = '#f6f6f6';
+                janrain.settings.language = 'en';
+
+                janrain.settings.packages = ['login', 'capture'];
+
+
+                function isReady() { janrain.ready = true; };
+                if (document.addEventListener) {
+                    document.addEventListener("DOMContentLoaded", isReady, false);
+                } else {
+                    window.attachEvent('onload', isReady);
+                }
+
+                var e = document.createElement('script');
+                e.type = 'text/javascript';
+                e.id = 'janrainAuthWidget'
+
+                var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+                url += 'janrain-widgets.s3.amazonaws.com';
+                url += '/ftsample/load.js';
+                e.src = url;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(e, s);
+            })();
+
+            function janrainWidgetOnload() {
+            }
+
+            function janrainCaptureWidgetOnLoad() {
+                janrain.capture.ui.start();
+
+                function handleCaptureLogin(result) {
+
+                    niceLog ("result:");
+                    niceLog (result);
+
+                    if (janrain.settings.capture.responseType == 'code') {
+                        niceLog ("exchanging code for token...");
+                        getTokenForCode(result.authorizationCode, "http://example.com/");
+                        janrain.capture.ui.modal.close();
+                    }
+                    else if (janrain.settings.capture.responseType == 'token') {
+                        janrain.capture.ui.modal.close();
+                    }
+
+                    $("#loggedInNavigation").show();
+                    $("#loggedOutNavigation").hide();
+
+                }
+
+                janrain.events.onCaptureSessionFound.addHandler(function(result){
+                    $("#loggedInNavigation").show();
+                    $("#loggedOutNavigation").hide();
+                });
+
+                janrain.events.onCaptureSessionNotFound.addHandler(function(result){
+                    $("#loggedInNavigation").hide();
+                    $("#loggedOutNavigation").show();
+                });
+
+                janrain.events.onCaptureSuccessfulLogin.addHandler(handleCaptureLogin);
+                janrain.events.onCaptureSuccessfulRegistration.addHandler(handleCaptureLogin);
+
+            }
+        </script>
+    </head>
+    <body class="janrain-font">
+        <div id="global_nav">
+            <div class="wrapper">
+                <ul id="loggedInNavigation" style="display: none;">
+                  <li><a href="edit-profile.html">Edit Profile</a></li>
+                  <li><a href="#" id="signOut">Sign Out</a></li>
+                </ul>
+                <ul id="loggedOutNavigation">
+                  <li><a href="#" class="capture_modal_open" id="signIn">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="contentBoxDarkBlueTexture">
+            <div class="wrapper">
+                <h1 class="lrg centerText">Welcome to the Janrain Demo Site.</h1>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="grid-block section">
+                <div class="center-col col2">
+                    <div class="contentBoxWhiteShadow clearfix">
+                    <span class="janrain-icon-gears janrain-icon-48 janrain-icon-green-bg"></span>
+                        <div class="inline">
+                            <h2>Demo Capture Widget</h2>
+                            See examples of the sign in, create account and edit profile flow
+                        </div>
+                            <a href="#" class="capture_modal_open primary btn_large btn_icon right">Launch Demo <span class="step janrain-icon-forward janrain-icon-16"></span></a>
+                    </div>
+                </div>
+            </div>
+
+        <div style="display:none;" id="capture_footer_partial">
+            <div class="capture_footer">
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+
+        <div style="display:none;" id="demo">
+            <div class="capture_header">
+                <h1>Sign Up / Sign In</h1>
+            </div>
+            <div class="capture_signin">
+                <h2>With your existing account from...</h2>
+                {* loginWidget *} <br />
+                <h2>With a traditional account...</h2>
+                {* #traditionalCollection *}
+                    {* #signInOption *}
+                    <div class="capture_backgroundColor">
+                        {* #userInformationForm *}
+                            {* traditionalSignIn_emailAddress *}
+                            {* traditionalSignIn_password *}
+                            <div class="capture_form_item capture_rightText">
+                                {* traditionalSignIn_signInButton *}
+                            </div>
+                        {* /userInformationForm *}
+                    </div>
+                    {* /signInOption *}
+                    {* #createAccountOption *}
+                    <div class="capture_backgroundColor">
+                        {* createAccountForm *}
+                            {* traditionalCreateAccount_emailAddress *}
+                            {* traditionalCreateAccount_desiredPassword *}
+                            <div class="capture_form_item capture_rightText">
+                                {* traditionalCreateAccount_continueButton *}
+                            </div>
+                        {* /createAccountForm *}
+                    </div>
+                    {* /createAccountOption *}
+                {* /traditionalCollection *}
+            </div>
+            {* captureFooter *}
+        </div>
+
+        <div style="display:none;" id="returnSocial">
+            <div class="capture_header">
+                <h1>Sign Up / Sign In</h1>
+            </div>
+            <div class="capture_signin">
+                <h2>With your existing account from...</h2>
+                {* loginWidget *} 
+                <div class="capture_centerText switchLink"><a href="#" data-cancelcapturereturnexperience="true">Use another account</a></div>
+            </div>
+            {* captureFooter *}
+        </div>
+        <div style="display:none;" id="traditionalAuthenticateMerge" class="capture_med_footer">
+            <div class="capture_header">
+                {* backButton *}
+                <h1>Sign in to complete account merge</h1>
+            </div>
+            <div class="capture_signin">
+            {* #tradAuthenticateMergeForm *}
+                {* traditionalSignIn_emailAddress *}
+                {* mergePassword *}
+                <div class="capture_footer">
+                    <div class="capture_form_item capture_rightText">
+                        {* traditionalSignIn_signInButton *}
+                    </div>
+                </div>
+             {* /tradAuthenticateMergeForm *}
+            </div>
+        </div>
+        <div style="display:none;" id="returnTraditional">
+            <div class="capture_header">
+                <h1>Sign Up / Sign In</h1>
+            </div>
+            <div class="capture_signin">
+                <h2 class="capture_centerText">Welcome back. Please sign in</h2>
+                    <div class="capture_backgroundColor">
+                        {* #userInformationForm *}
+                            {* traditionalSignIn_emailAddress *}
+                            {* traditionalSignIn_password *}
+                            <div class="capture_form_item capture_rightText">
+                                {* traditionalSignIn_signInButton *}
+                            </div>
+                        {* /userInformationForm *}
+                    </div>
+                <div class="capture_centerText switchLink"><a href="#" data-cancelcapturereturnexperience="true">Use another account</a></div>
+            </div>
+            {* captureFooter *}
+        </div>
+
+        <div style="display:none;" id="socialRegistration" class="capture_lrg_footer">
+            <div class="capture_header">
+                {* backButton *}
+                <h1>Almost Done!</h1>
+            </div>
+              <h2>Please confirm the information below before signing in.</h2>
+                {* #socialRegistrationForm *}
+                    {* socialRegistration_emailAddress *}
+                    {* socialRegistration_displayName *}
+                    {* socialRegistration_ageVerification *}
+                <div class="capture_footer">
+                    <div class="capture_label">By clicking "Create Account", you confirm that you accept our 
+                        <a href="#">terms of service</a> and have read and understand 
+                        <a href="#">privacy policy</a>.
+                    </div>
+                    {* socialRegistration_signInButton *}
+                </div>
+                {* /socialRegistrationForm *}
+        </div>
+        <div style="display:none;" id="traditionalRegistration" class="capture_lrg_footer">
+            <div class="capture_header">
+                {* backButton *}
+                <h1>Almost Done!</h1>
+            </div>
+                {* #registrationForm *}
+                    {* traditionalRegistration_emailAddress *}
+                    {* traditionalRegistration_password *}
+                    {* traditionalRegistration_passwordConfirm *}
+                    {* traditionalRegistration_displayName *}
+                    {* traditionalRegistration_firstName *}
+                    {* traditionalRegistration_lastName *}
+                    {* traditionalRegistration_captcha *}
+                    {* traditionalRegistration_ageVerification *}
+                <div class="capture_footer">
+                    <div class="capture_label">By clicking "Create Account", you confirm that you accept our 
+                        <a href="#">terms of service</a> and have read and understand 
+                        <a href="#">privacy policy</a>.
+                    </div>
+                    <div class="capture_btn_wrapper">
+                    {* createAccountButton *}
+                    </div>
+                </div>
+                {* /registrationForm *}
+        </div>
+
+        <div style="display:none;" id="forgotPassword" class="capture_med_footer">
+            <div class="capture_header">
+                {* backButton *}
+                <h1>Create a new password</h1>
+            </div>
+            <h2>Don't worry, it happens. We'll send you a link to create a new password.</h2>
+            {* #forgotPasswordForm *}
+                {* forgotPassword_emailAddress *}
+                <div class="capture_footer">
+                    {* forgotPassword_sendButton *}
+                </div>
+            {* /forgotPasswordForm *}
+        </div>
+
+        <div style="display:none;" id="forgotPasswordSuccess" class="capture_med_footer">
+            <div class="capture_header">
+                <h1>Create a new password</h1>
+            </div>
+              <p>We've sent an email to <b>{* emailPlainText *}</b> with instructions to create a new password. Your existing password has not been changed.</p>
+            <div class="capture_footer">
+                <a href="#" class="capture_btn capture_secondary capture_modal_closeConfirm">Close</a>
+            </div>
+        </div>
+
+        <div style="display:none;" id="mergeAccounts" class="capture_med_footer">
+            {* mergeAccounts {"custom": false} *}
+                    </div>
+
+    </body>
+</html>

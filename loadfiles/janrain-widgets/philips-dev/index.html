@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<link href="http://cdn.quilt.janrain.com/2.1.0/quilt.css" media="all" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+		</style>
+
+		<script type="text/javascript">
+			function getCookie(name) {
+				var nameEQ = name + "=";
+				var cookies = document.cookie.split(';');
+				for(var i = 0; i < cookies.length; i++) {
+					var c = cookies[i];
+					while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+					if (c.indexOf(nameEQ) == 0) {
+						return c.substring(nameEQ.length, c.length);
+					}
+				}
+				return null;
+			}
+			function selectLang(selectElem) {
+				document.cookie = 'lang=' + selectElem.options[selectElem.selectedIndex].value + '; path=/';
+				window.location.reload();
+			}
+			(function() {
+				if (typeof window.janrain !== 'object') window.janrain = {};
+				window.janrain.settings = {};
+				window.janrain.settings.capture = {};
+
+				janrain.settings.capture.redirectUri = 'https://' + window.location.hostname + '/philips-dev/';
+				janrain.settings.capture.responseType = 'token';
+				janrain.settings.capture.captureServer = 'https://philips.dev.janraincapture.com';
+				janrain.settings.capture.clientId = 'a6424v37rky827mn22ht7byaswxw3ns5';
+				janrain.settings.capture.appId= 'eupac7ugz25x8dwahvrbpmndf8';
+				janrain.settings.capture.registerFlow = 'socialRegistration';
+				janrain.settings.capture.flowVersion = 'HEAD';
+				janrain.settings.capture.flowName = 'signIn';
+				janrain.settings.capture.recaptchaPublicKey = '6LeVKb4SAAAAAGv-hg5i6gtiOV4XrLuCDsJOnYoP';
+				janrain.settings.capture.setProfileData = '';
+				janrain.settings.capture.stylesheets = ['stylesheets/philips.css'];
+				janrain.settings.capture.confirmModalClose = '';
+				janrain.settings.capture.modalCloseHtml = '<span class="janrain-icon-16 janrain-icon-ex2"><\/span>';
+				janrain.settings.capture.modalBorderColor = '#7AB433';
+				janrain.settings.capture.noModalBorderInlineCss = true;
+				
+				janrain.settings.capture.federate = true;
+				janrain.settings.capture.federateServer = 'https://philips-dev.janrainsso.com';
+				janrain.settings.capture.federateXdReceiver = 'http://' + window.location.host + '/philips-dev/xdcomm.html';
+				janrain.settings.capture.federateLogoutUri = 'http://' + window.location.host + '/philips-dev/logout.html';
+				janrain.settings.tokenUrl = 'https://localhost/';
+				janrain.settings.type = 'embed';
+				janrain.settings.appId = 'bdbppnbjfcibijknnfkk';
+				janrain.settings.appUrl = 'https://philips-dev.rpxnow.com';
+				janrain.settings.providers = ['twitter','google','yahoo','blogger','flickr','facebook','aol','openid'];
+				janrain.settings.providersPerPage = '4';
+				janrain.settings.format = 'one row';
+				janrain.settings.actionText = ' ';
+				janrain.settings.showAttribution = true;
+				janrain.settings.fontColor = '#965151';
+				janrain.settings.fontFamily = 'lucida grande, Helvetica, Verdana, sans-serif';
+				janrain.settings.backgroundColor = '#ffffff';
+				janrain.settings.width = '162';
+				janrain.settings.borderColor = '#ffffff';
+				janrain.settings.borderRadius = '0';
+				janrain.settings.buttonBorderColor = '#ffffff';
+				janrain.settings.buttonBorderRadius = '0';
+				janrain.settings.buttonBackgroundStyle = 'gradient';
+				janrain.settings.tokenAction = 'event';
+				
+				janrain.settings.language = getCookie('lang');
+				if (!janrain.settings.language) {
+					janrain.settings.language = 'en-GB';
+				}
+
+				janrain.settings.packages = ['login', 'capture'];
+
+				function isReady() { janrain.ready = true; };
+				if (document.addEventListener) {
+					document.addEventListener("DOMContentLoaded", isReady, false);
+				} else {
+					window.attachEvent('onload', isReady);
+				}
+
+				var e = document.createElement('script');
+				e.type = 'text/javascript';
+				e.id = 'janrainAuthWidget'
+
+				var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+				url += 'd16s8pqtk4uodx.cloudfront.net';
+				url += '/philips-dev/load.js';
+				e.src = url;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(e, s);
+			})();
+
+			function janrainCaptureWidgetOnLoad() {
+				var langSelElem = document.getElementById('select_language');
+				for (var i = 0; i < langSelElem.options.length; i++) {
+					if (langSelElem.options[i].value == janrain.settings.language) {
+						langSelElem.selectedIndex = i;
+						continue;
+					}
+				}
+
+				janrain.capture.ui.start();
+				janrain.events.onProviderLoginToken.addHandler(function(result){
+					if (result && result.janrainWidgetParameters && result.janrainWidgetParameters.provider) {
+						loggedInProvider = result.janrainWidgetParameters.provider;
+					}
+				});
+
+				janrain.events.onCaptureValidationFailed.addHandler(function(result){
+					if (result &&
+						result.field &&
+						result.field.id &&
+						result.message === " " &&
+						result.field.id === 'capture_socialRegistrationNoEmail_socialRegistrationNoEmail_emailAddress') {
+						var usedEmail = document.getElementById('usedEmail'),
+							usedEmail2 = document.getElementById('usedEmail2'),
+							emailFound = document.getElementById("socialRegistrationNoEmail_emailFound"),
+							almostDone = document.getElementById("socialRegistrationNoEmail_almostDone"),
+							createNewAccount = document.getElementById("socialRegistrationNoEmail_createNewAccount"),
+							sm1 = document.getElementById("sm1"),
+							sm2 = document.getElementById("sm2");
+
+						if (usedEmail) usedEmail.innerHTML = result.field.value;
+						if (usedEmail2) usedEmail2.innerHTML = result.field.value;
+						result.field.value = '';
+						if (result.field.focus) result.field.focus();
+						if (sm1 && loggedInProvider) sm1.innerHTML = loggedInProvider;
+						if (sm2 && loggedInProvider) sm2.innerHTML = loggedInProvider;
+						if (almostDone) almostDone.style.display = 'none';
+						if (emailFound) emailFound.style.display = 'block';
+						if (createNewAccount) createNewAccount.style.display = 'block';
+						
+					}
+				});
+
+				janrain.events.onReturnExperienceFound.addHandler(function(result) {
+					console.log('return experience', result);
+				});
+
+				janrain.events.onCaptureSessionFound.addHandler(function(result){
+					console.log('onCaptureSessionFound')
+				});
+				janrain.events.onCaptureSessionNotFound.addHandler(function(result){
+					console.log('onCaptureSessionNotFound');
+				});
+				janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
+					console.log('onCaptureLoginSuccess');
+					janrain.capture.ui.modal.close();
+					alert('You have successfully logged in');
+				});
+				janrain.events.onCaptureServerValidationFailed.addHandler(function(result) {
+					console.log('onCaptureServerValidationFailed', result);
+				});
+				janrain.events.onCaptureError.addHandler(function(result) {
+					console.log('onCatpureError', result);
+				})
+				janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
+					console.log('onCaptureRegistrationSuccess');
+					janrain.capture.ui.modal.close();
+				});
+				janrain.events.onCaptureFederateLogin.addHandler(function(result) {
+					console.log('onCaptureFederateLogin', result);
+				});
+				janrain.events.onCaptureEmailSent.addHandler(function() {
+					janrain.capture.ui.endCaptureSession();
+				});
+				janrain.events.onCaptureRenderComplete.addHandler(function(result) {
+					var passwordResetFunc = function(redirectURIField) {
+						redirectURIField.value = 'http://' + window.location.hostname + '/philips-dev/reset-password.html?foo=1&bar=baz';
+					};
+					var emailVerifyFunc = function(redirectURIField) {
+						var emailVerifyURL = 'http://' + window.location.hostname + '/philips-dev/verify-email.html?foo=1&bar=baz';
+						redirectURIField.value = emailVerifyURL;
+						janrain.settings.capture.redirectUri = emailVerifyURL;
+					};
+					var funcTable = {
+						'emailAddressForm': emailVerifyFunc,
+						'forgotPasswordForm': passwordResetFunc,
+						'registrationForm': emailVerifyFunc,
+						'registrationFormBlank': emailVerifyFunc,
+						'resendVerificationForm': emailVerifyFunc,
+						'resetPasswordForm': passwordResetFunc,
+						'socialRegistrationForm': emailVerifyFunc,
+						'socialRegistrationNoEmailFinishForm': emailVerifyFunc
+					}
+					for (var i in document.forms) {
+						var form = document.forms[i];
+						if (funcTable[form.name] && form.redirect_uri) {
+							funcTable[form.name](form.redirect_uri);
+						}
+					}
+				});
+				janrain.capture.ui.registerFunction('passwordValidation', function(name, value) {
+					return /([a-zA-Z].*[0-9._@$])|([0-9].*[a-zA-Z._@$])|([._@$].*[a-zA-Z0-9])/.test(value);
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div class="global_nav">
+			<div class="wrapper">
+				<ul class="nav-list">
+					<li><a href="index.html" class="selected">Home</a></li>
+					<li><a href="#">Sign-in</a></li>
+					<li><a href="registration.html">Register</a></li>
+					<li><a href="myPhilips.html">myPhilips</a></li>
+					<li>
+						<select id="select_language" onchange="selectLang(this)" style="margin: 14px 0 14px 15px;">
+							<option value="bg-BG">bg-BG</option>
+							<option value="cs-CZ">cs-CZ</option>
+							<option value="da-DK">da-DK</option>
+							<option value="de-AT">de-AT</option>
+							<option value="de-CH">de-CH</option>
+							<option value="de-DE">de-DE</option>
+							<option value="el-GR">el-GR</option>
+							<option value="en-AU">en-AU</option>
+							<option value="en-CA">en-CA</option>
+							<option value="en-GB" selected="selected">en-GB</option>
+							<option value="en-HK">en-HK</option>
+							<option value="en-ID">en-ID</option>
+							<option value="en-IE">en-IE</option>
+							<option value="en-IN">en-IN</option>
+							<option value="en-MY">en-MY</option>
+							<option value="en-NZ">en-NZ</option>
+							<option value="en-PH">en-PH</option>
+							<option value="en-PK">en-PK</option>
+							<option value="en-SA">en-SA</option>
+							<option value="en-SG">en-SG</option>
+							<option value="en-US">en-US</option>
+							<option value="en-ZA">en-ZA</option>
+							<option value="es-AR">es-AR</option>
+							<option value="es-CL">es-CL</option>
+							<option value="es-CO">es-CO</option>
+							<option value="es-ES">es-ES</option>
+							<option value="es-MX">es-MX</option>
+							<option value="es-PA">es-PA</option>
+							<option value="es-PE">es-PE</option>
+							<option value="es-UY">es-UY</option>
+							<option value="es-VE">es-VE</option>
+							<option value="et-EE">et-EE</option>
+							<option value="fi-FI">fi-FI</option>
+							<option value="fr-CA">fr-CA</option>
+							<option value="fr-FR">fr-FR</option>
+							<option value="fr-BE">fr-BE</option>
+							<option value="fr-CH">fr-CH</option>
+							<option value="hr-HR">hr-HR</option>
+							<option value="hu-HU">hu-HU</option>
+							<option value="it-IT">it-IT</option>
+							<option value="ja-JP">ja-JP</option>
+							<option value="ko-KR">ko-KR</option>
+							<option value="lt-LT">lt-LT</option>
+							<option value="lv-LV">lv-LV</option>
+							<option value="nl-BE">nl-BE</option>
+							<option value="nl-NL">nl-NL</option>
+							<option value="no-NO">no-NO</option>
+							<option value="pl-PL">pl-PL</option>
+							<option value="pt-BR">pt-BR</option>
+							<option value="pt-PT">pt-PT</option>
+							<option value="ro-RO">ro-RO</option>
+							<option value="ru-UA">ru-UA</option>
+							<option value="ru-RU">ru-RU</option>
+							<option value="sk-SK">sk-SK</option>
+							<option value="sl-SI">sl-SI</option>
+							<option value="sv-SE">sv-SE</option>
+							<option value="th-TH">th-TH</option>
+							<option value="tr-TR">tr-TR</option>
+							<option value="vi-VN">vi-VN</option>
+							<option value="zh-CN">zh-CN</option>
+							<option value="zh-HK">zh-HK</option>
+							<option value="zh-TW">zh-TW</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper section">
+			<div class="grid-block">
+				<div class="col250">&nbsp;
+				</div>
+				<div class="col125">
+			<div class="contentBoxWhiteShadow">
+		<div style="display:none;" id="signIn">
+			<div class="capture_signin">
+				<h2>Login to your social account</h2>
+				{* loginWidget *} <br />
+			</div>
+			<div class="capture_backgroundColor">
+				<div class="capture_signin">
+					<h2>Login with My Philips account</h2>
+						{* #userInformationForm *}
+							{* traditionalSignIn_emailAddress *}
+							{* traditionalSignIn_password *}
+							<div class="capture_form_item capture_rightText">
+								{* traditionalSignIn_signInButton *}
+							</div>
+						{* /userInformationForm *}
+				</div>
+			</div>
+			<div class="capture_signin" style="margin-top:10px;">
+				<h2>Don't have a Philips Account?</h2>
+				<a href="registration.html">Create one now</a>
+			</div>
+		</div>
+	</div>
+
+		<div style="display:none;" id="returnSocial">
+			<div class="capture_header">
+				<h1>Sign Up / Sign In</h1>
+			</div>
+			<div class="capture_signin">
+				<h2>Welcome Back {* welcomeName *}</h2>
+				{* loginWidget *} 
+				<div class="capture_centerText switchLink"><a href="#" data-cancelcapturereturnexperience="true">Use another account</a></div>
+			</div>
+		</div>
+		
+		<div style="display:none;" id="returnTraditional">
+			<div class="capture_header">
+				<h1>Sign Up / Sign In</h1>
+			</div>
+			<h2 class="capture_centerText">Welcome back. Please sign in</h2>
+					<div class="capture_backgroundColor">
+						<div class="capture_signin">
+						{* #userInformationForm *}
+							{* traditionalSignIn_emailAddress *}
+							{* traditionalSignIn_password *}
+							<div class="capture_form_item capture_rightText">
+								{* traditionalSignIn_signInButton *}
+							</div>
+						{* /userInformationForm *}
+					</div>
+				<div class="capture_centerText switchLink"><a href="#" data-cancelcapturereturnexperience="true">Use another account</a></div>
+			</div>
+		</div>
+		
+			<div style="display:none;" id="socialRegistrationNoEmailFinish" class="capture_lrg_footer">
+				<div class="capture_header">
+					<h1>You are almost done, please provide or verify the following information.</h1>
+				</div>
+				* All fields are required
+				{* #socialRegistrationNoEmailFinishForm *}
+					{* registration_firstName *}
+					{* registration_lastName *}
+					{* registration_birthday *}
+					{* registration_salutation *}
+					{* socialRegistrationNoEmailFinish_emailAddress_display *}
+					{* socialRegistrationNoEmailFinish_emailAddress *}
+					{* informationOptIn *}
+					<div class="capture_footer">
+						<div class="capture_left">
+							{* backButton *}
+						</div>
+						<div class="capture_right">
+						{* socialRegistration_signInButton *}
+						</div>
+					</div>
+				{* /socialRegistrationNoEmailFinishForm *}
+			</div>
+		<div style="display:none;" id="socialRegistration" class="capture_lrg_footer">
+			<div class="capture_header">
+				<h1>You are almost done, please provide or verify the following information.</h1>
+			</div>
+				* All fields are required
+				{* #socialRegistrationForm *}
+					{* registration_firstName *}
+					{* registration_lastName *}
+					{* registration_birthday *}
+					{* registration_salutation *}
+					{* socialRegistration_emailAddress_display *}
+					{* socialRegistration_emailAddress *}
+					{* informationOptIn *}
+					<div class="capture_footer">
+						<div class="capture_left">
+							{* backButton *}
+						</div>
+						<div class="capture_right">
+						{* socialRegistration_signInButton *}
+						</div>
+					</div>
+				{* /socialRegistrationForm *}
+		</div>
+		
+					<div style="display:none;" id="socialRegistrationNoEmail" class="capture_lrg_footer">
+						<div id="socialRegistrationNoEmail_emailFound" style="display: none">
+							<h2>Login with your Philips account</h2>
+							<p>We see that this email, <strong id="usedEmail"></strong>, is already connected to a Philips account. Please log in with your Philips account first and add <strong id ="sm1"></strong> to the linked social media in your profile. After linking, you can log in to my Philips using <strong id="sm2"></strong> next time.</p>
+							<p><a href="#" data-capturescreen="signInModal">Login with my Philips account.</a></p>
+						</div>
+						<div id="socialRegistrationNoEmail_almostDone">
+							<h2>Almost Done</h2><p>Please provide a valid email address.</p>
+						</div>
+						<div id="socialRegistrationNoEmail_createNewAccount" style="display: none">
+							<h2>Create a new Philips account</h2>
+							<p>We see that this email, <strong id="usedEmail2"></strong>, is already connected to a Philips account.  You can create a new Philips account by providing another email address.</p>
+						</div>
+						{* #socialRegistrationNoEmailForm *}
+							{* socialRegistrationNoEmail_emailAddress *}
+							<div class="capture_footer">
+								<div class="capture_right">
+								{* socialRegistration_signInButton *}
+								</div>
+							</div>
+						{* /socialRegistrationNoEmailForm *}
+					</div>
+		<div style="display:none;" id="socialEmailVerification">
+			<div class="capture_header">
+				<h1>To login with your __ account, please provide an email address.</h1>
+			</div>
+				{* socialRegistration_emailAddress *}
+		</div>
+
+		<div style="display:none;" id="registrationSuccess">
+			<div class="capture_header">
+				<h1>You have successfully created a Philips account.</h1>
+			</div>
+			<p>An activation email has been sent to {* data_emailAddress *}. Please click on the link in this email to activate your Philips account and verify your email address.</p>
+		</div>
+
+		<div style="display:none;" id="registrationSuccessConfirmed">
+			<div class="capture_header">
+				<h1>Thank you for registering!</h1>
+			</div>
+				<p>We look forward to seeing you on [website] frequently. Visit us and sign in to update your profile, receive the latest news and keep up to date with mobile alerts.</p>
+				<p>
+					Click <a href="#" onclick="janrain.capture.ui.modal.close()">here</a> to return to the page you were visiting.
+				</p>
+		</div>
+
+		<div style="display:none;" id="forgotPassword">
+			<div class="capture_header">
+				<h1>Create a new password</h1>
+			</div>
+			<h2>Don't worry, it happens. We'll send you a link to create a new password.</h2>
+			{* #forgotPasswordForm *}
+				{* forgotPassword_emailAddress *}
+				<div class="capture_footer">
+					<div class="capture_left">
+						{* backButton *}
+					</div>
+					<div class="capture_right">
+						{* forgotPassword_sendButton *}
+					</div>
+				</div>
+			{* /forgotPasswordForm *}
+		</div>
+
+		<div style="display:none;" id="forgotPasswordSuccess">
+			<div class="capture_header">
+				<h1>Email sent</h1>
+			</div>
+			<p>We have sent you an email with a link to change your password.</p>
+		</div>
+
+		<div style="display:none;" id="forgotPasswordSuccess">
+			<div class="capture_header">
+				<h1>Create a new password</h1>
+			</div>
+				<p>We've sent an email with instructions to create a new password. Your existing password has not been changed.</p>
+			<div class="capture_footer">
+				<a href="#" onclick="janrain.capture.ui.modal.close()" class="capture_btn capture_secondary">Close</a>
+			</div>
+		</div>
+		
+		<div style="display:none;" id="mergeAccounts">
+			{* mergeAccounts { "custom": true } *}
+			<div id="capture_mergeAccounts_mergeAccounts_mergeOptionsContainer" class="capture_mergeAccounts_mergeOptionsContainer">
+				<div class="capture_header">
+					Log in with your Philips account
+				</div>
+				<div class="capture_dashed">
+					<p class="capture_bigText">{| foundExistingAccountText |}</p>
+					{* profilePhotoMerge *}<br />
+					{* displayNameMerge *}
+				</div>
+				<h1>Sign in to complete account merge</h1>
+			{* #tradAuthenticateMergeForm *}
+				{* traditionalSignIn_emailAddress *}
+				{* mergePassword *}
+				<div class="capture_footer">
+					<div class="capture_right">
+						{* traditionalSignIn_signInButton *}
+					</div>
+				</div>
+			{* /tradAuthenticateMergeForm *}
+			</div>
+		</div>
+		<div style="display:none;" id="resendVerification">
+			{* #resendVerificationForm *}
+				<div class="capture_header">
+					<h1>Verify your email address</h1>
+				</div>
+				<p>You cannot log in until your email address {* data_emailAddress *} is verified.  Please click the email verification link in the message we have sent you, or click the link below to get another message.</p>
+				<div class="capture_signin">
+					{* resendVerification_emailAddress *}
+					{* submitButton *}
+				</div>
+			{* /resendVerificationForm *}
+		</div>
+		<div style="display:none;" id="resendVerificationSuccess">
+			<div class="capture_header">
+				<h1>We have sent a new verification code</h1>
+			</div>
+		</div>
+	</div>
+	</div>
+	</body>
+</html>
+

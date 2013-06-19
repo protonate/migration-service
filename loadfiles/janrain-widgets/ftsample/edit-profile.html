@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link href="http://cdn.quilt.janrain.com/2.0.5/quilt.css" media="all" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+	   .janrain-capture-ui.janrain-font {font-family: "proxima-nova", Helvetica}
+	</style>
+	<script type="text/javascript">
+	(function() {
+	    if (typeof window.janrain !== 'object') window.janrain = {};
+	    window.janrain.settings = {};
+            window.janrain.settings.capture = {};
+
+	    /* _______________ can edit below this line _______________ */
+
+            janrain.settings.appUrl = 'https://ft-eval.rpxnow.com';
+            janrain.settings.capture.appId= '49aaft8enkyjq4spuuwz3qbce9';
+            janrain.settings.capture.clientId = 'wcjwbvttbmgyudy8m59cq2r3amjhrb6s';
+            janrain.settings.capture.redirectUri = 'http://example.com/',
+            janrain.settings.capture.responseType = 'token';
+            janrain.settings.capture.captureServer = 'https://ft.dev.janraincapture.com';
+            janrain.settings.capture.stylesheets = ["stylesheets/demo.css"];
+            janrain.settings.type = 'embed';
+            janrain.settings.tokenUrl = 'http://financialtimes.com/';
+            janrain.settings.tokenAction = 'event';
+            janrain.settings.format = 'two column';
+            janrain.settings.providers = ['google', 'yahoo'];
+            janrain.settings.actionText = '';
+            janrain.settings.borderColor = '#ffffff';
+            janrain.settings.backgroundColor = '#f6f6f6';
+            janrain.settings.language = 'en';
+            janrain.settings.packages = ['login', 'capture'];
+
+            janrain.settings.capture.flowName = 'editProfileFlow';
+
+
+	    /* _______________ can edit above this line _______________ */
+
+	    function isReady() { janrain.ready = true; };
+	    if (document.addEventListener) {
+	      document.addEventListener("DOMContentLoaded", isReady, false);
+	    } else {
+	      window.attachEvent('onload', isReady);
+	    }
+
+            var e = document.createElement('script');
+            e.type = 'text/javascript';
+            e.id = 'janrainAuthWidget'
+
+            var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+            url += 'janrain-widgets.s3.amazonaws.com';
+            url += '/ftsample/load.js';
+            e.src = url;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(e, s);
+        })();
+
+        function janrainCaptureWidgetOnLoad() {
+            if (window.console && window.console.log) console.log('capture started')
+            janrain.events.onCaptureScreenShow.addHandler(function(result){
+                    //console.log('ScreenShow', result)
+            });
+            janrain.events.onCaptureRenderStart.addHandler(function(flow){
+                //if (window.console && window.console.log) console.log(flow);
+            });
+            janrain.events.onCaptureAccessDenied.addHandler(function(){
+                window.location = 'index.html';
+            });
+            janrain.capture.ui.start();
+        }
+	</script>
+</head>
+    <body class="janrain-font">
+        <div id="global_nav">
+            <div class="wrapper">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <!-- <li><a href="#" id="signOut">Sign Out</a></li>-->
+                </ul>
+            </div>
+        </div>
+    <div style="display:none;" id="editProfileLayout">
+        <div class="capture_header">
+            <h1>Edit Your Account</h1>
+        </div>
+        <div class="capture-profile-photo">
+            <h3>Profile Photo</h3>
+            <div class="capture_profile_section contentBoxWhiteShadow clearfix">
+                {* photoManager *}
+            </div>
+            <h3>Linked Accounts</h3>
+            <div class="capture_profile_section contentBoxWhiteShadow clearfix">
+                {* linkedAccounts *}
+                {* linkAccountContainer *}
+                    <h2>Link any of these providers with your account.</h2><h3>Allows you to sign in to your example.com account      using that provider in the future.</h3>
+                    {* loginWidget *}
+                {* /linkAccountContainer *}
+            </div>
+        </div>
+        <div id="capture_accountInfo">
+            <h3>Account Info</h3>
+            {* savedProfileMessage *}
+            <div class="contentBoxWhiteShadow capture_profile_section">
+                {* editProfileForm *}
+                    {* displayName *}
+                    {* profileBlurb *}
+                    {* name *}
+                    {* email *}
+                    {* phone *}
+                    {* location *}
+                    {* addressDrop *}
+                    {* gender *}
+                    {* birthdate *}
+                    <div class="capture_form_item">
+                    {* savedProfileMessage *}
+                    {* submitButton *}
+                    </div>
+                {* /editProfileForm *}
+            </div>
+            <!-- Only show this if it was from a traditional login !-->
+            <h3 class="janrain_traditional_account_only">Password</h3>
+            <div class="janrain_traditional_account_only contentBoxWhiteShadow capture_profile_section">
+              <div class="capture_form_item capture_editContactForm">
+                <label>Password</label>
+                <div class="capture_inputPlaceholder">
+                    &bull;&bull;&bull;&bull;&bull;&bull;&bull;
+              </div>
+                <div class="capture_tip">
+                    <a href="#" data-capturescreen="changepassword">Change Password</a>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+    <div style="display:none;" id="changepassword" class="capture_med_footer">
+        <div class="capture_header">
+            <h1>Change password</h1>
+        </div>
+                  {* newPasswordForm *}
+                        {* newpassword *}
+                        {* newpasswordConfirm *}
+                        <div class="capture_footer">{* submitButton *}</div>
+                  {* /newPasswordForm *}
+    </div>
+    <div style="display:none;" id="newPasswordSuccess" class="capture_med_footer">
+        <div class="capture_header">
+            <h1>You did it!</h1>
+        </div>
+          <p>Your password has been successfully changed.</p>
+        <div class="capture_footer">
+            <a href="#" class="capture_btn capture_secondary">Close</a>
+        </div>
+    </div>
+
+
+    <div style="display:none;" id="addLinkedAccount">
+        <div class="capture_header">
+            <h1>Link another account</h1>
+        </div>
+        <h3>Link any of these providers with your account.<br />Allows you to sign in to your {* siteName *} account using that provider in the future.</h3>
+        {* loginWidget *}
+    </div>
+
+    <div style="display:none;" id="uploadPhoto" class="capture_med_footer">
+        <div class="capture_header">
+            {* backButton *}
+            <h1>Profile Photo</h1>
+        </div>
+        <div class="capture_photoDisplay">
+            <div id="profile_pic" class="default">
+                {* profilePic *}
+            </div>
+        </div>
+        <div class="capture_uploadPhoto_container">
+          {* uploadPhotoForm *}
+              {* uploadPhoto *}
+                <div class="capture_footer">
+                    {* uploadButton *}
+                </div>
+          {* /uploadPhotoForm *}
+        </div>
+    </div>
+
+    <div style="display:none;" id="editPhoto" class="capture_med_footer">
+        <div class="capture_header">
+            {* backButton *}
+            <h1>Edit Photo</h1>
+        </div>
+        <div class="capture_photoDisplay">
+            <div id="profile_pic" class="default">
+                {* photoEditResult *}
+            </div>
+        </div>
+        <div class="capture_editPhoto_container">
+            <h2>Select a region of the image to use for your photo.</h2>
+            {* photoEditOriginal *}
+        </div>
+        <div class="capture_footer">
+            {* photoEdit_saveButton *}<a href="#" data-capturescreen="uploadPhoto" class="capture_btn capture_btn_secondary">Choose a different photo</a>
+        </div>
+    </div>
+
+
+<div id="janrainEngageEmbed"  style="display:none;"></div>
+</body>
+
+</html>
